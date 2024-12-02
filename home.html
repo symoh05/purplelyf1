@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Lyf - Home</title>
+    <style>
+        body {
+            background-color: #2B003B; /* Dark Purple */
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            font-size: 32px;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+        .emoji, .name {
+            position: absolute;
+            animation: pop 3s infinite ease-in-out;
+        }
+        .emoji {
+            font-size: 100px; /* Increased maximum size */
+        }
+        .name {
+            font-size: 100px; /* Increased maximum size */
+            font-weight: bold;
+            color: hsl(300, 70%, 80%);
+            text-shadow: 1px 1px 2px black;
+        }
+        @keyframes pop {
+            0% {
+                transform: translate(0, 0) scale(0.1); /* Start at 10px */
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1); /* Grow to full size (100px) */
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Purple Lyf!</h1>
+    <script>
+        // Array of names to animate
+        const names = [
+            "Fuckboy", "Detroit", "Papse", "Bigtime", 
+            "Montez", "Waizman", "Malcom", "Phil", 
+            "Ndua", "Zombiez", "Shenanigans"
+        ];
+
+        // Function to create an emoji
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.style.setProperty('--x', `${Math.random() * 200 - 100}vw`);
+            emoji.style.setProperty('--y', `${Math.random() * 200 - 100}vh`);
+            emoji.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            emoji.textContent = '🖕';
+            emoji.style.fontSize = `${Math.random() * 90 + 10}px`; // 10px to 100px
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 3000);
+        }
+
+        // Function to create a name
+        function createName() {
+            const name = document.createElement('div');
+            name.className = 'name';
+            name.style.setProperty('--x', `${Math.random() * 200 - 100}vw`);
+            name.style.setProperty('--y', `${Math.random() * 200 - 100}vh`);
+            name.textContent = names[Math.floor(Math.random() * names.length)];
+            name.style.fontSize = `${Math.random() * 90 + 10}px`; // 10px to 100px
+            document.body.appendChild(name);
+            setTimeout(() => name.remove(), 3000);
+        }
+
+        // Intervals for emojis and names
+        setInterval(createEmoji, 200);
+        setInterval(createName, 500);
+    </script>
+</body>
+</html>
